@@ -1,0 +1,10 @@
+{{- range where site.RegularPages "Type" "in" site.Params.mainSections | first 10 -}}
+<div class="posts-image posts-image-big">
+	<div class="posts-image-content">
+        <a href="{{ .RelPermalink }}">
+            <img src="{{ .Params.image }}" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_l3eQ5xwiPy07kGEXjmjgmBKBRB7H2mRxCGhv1tFWg5c_mWT';" alt="{{ .LinkTitle }}"></a>
+            <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+            <p>{{ .Params.description }}</p>
+    </div>
+</div>
+{{- end -}}

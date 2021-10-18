@@ -1,0 +1,6 @@
+<h4 class="font-weight-bold spanborder"><span>Trending Article</span></h4>
+        <ol class="list-featured">
+    {{ range last 9 (shuffle (where .Site.RegularPages "Type" "in" site.Params.mainSections)) }}
+          <li class="mb-4"><span><h6 class="font-weight-bold"><a class="text-dark" href="{{ .RelPermalink}}">{{ .LinkTitle }}</a></h6><span class="d-block text-muted">In <span class="text-capitalize text-muted smoothscroll">{{ range .Params.categories }}{{ . }}{{ end }}, {{ .PublishDate.Format "Jan 02" | safeHTML }}</span></span></span></li>
+      {{ end }}
+        </ol>

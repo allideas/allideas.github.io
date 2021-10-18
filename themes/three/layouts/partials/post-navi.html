@@ -1,0 +1,14 @@
+{{- if and (not (eq .Params.single true)) (or .PrevInSection .NextInSection) -}}
+    <div class="posts-image" style="width: 50%">
+    {{- with .NextInSection -}}
+      {{- $title := .Title | safeHTML -}}
+      {{- if $title -}}<a style="padding-right:10px;text-align:justify;" href="{{- .RelPermalink -}}">&laquo;&laquo;&nbsp;{{- $title -}}</a>{{- end -}}
+    {{- end -}}
+    </div>
+    <div class="posts-image" style="width: 50%">
+    {{- with .PrevInSection -}}
+      {{- $title := .Title | safeHTML -}}
+      {{- if $title -}}<a style="text-align:justify;" href="{{- .RelPermalink -}}">{{- .Title | safeHTML -}}&nbsp;&raquo;&raquo;</a>{{- end -}}
+    {{- end -}}
+    </div>
+{{- end -}}

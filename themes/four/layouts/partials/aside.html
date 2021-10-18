@@ -1,0 +1,34 @@
+<h3 class="widget-title borq">Category</h3>
+    <ul class="list-group">
+    {{- $categories := .Site.Taxonomies.categories -}}
+    {{- if gt (len $categories) 0 -}}
+    {{- range $name, $taxonomy := $categories -}}
+    {{- with $.Site.GetPage (printf "/categories/%s" $name) -}}
+    <li class="list-group"><a href="{{ .Permalink }}" title="{{ .Title }}">{{- .Title -}}{{- if .Site.Params.widgets.categories_counter }} ({{ $taxonomy.Count }}){{ end -}}</a></li>
+    {{- end -}}
+    {{- end -}}
+    {{- end -}}
+    </ul>
+
+    {{ if .IsHome }}
+    <h3 class="widget-title borq">Featured Posts</h3>
+    {{- range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <ul class="list-group">
+    {{- range $i, $content := $taxonomy.Pages | shuffle | last 3 }}
+    <li class="list-group"><a href="{{ .RelPermalink}}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+    </ul>
+    {{- end }}
+    {{- end }}
+
+    {{- $related := .Site.RegularPages.RelatedIndices . "categories" "date" | first 10 }}
+    {{- with $related }}
+    <h3 class="widget-title borq">Related By Category</h3>
+    <ul class="list-group">
+    {{- range . }}
+    <li class="list-group">
+        <a href="{{ .RelPermalink}}">{{ .LinkTitle }}</a>
+    </li>
+    {{- end }}
+    </ul>
+    {{- end }}

@@ -1,0 +1,20 @@
+    {{- range where site.RegularPages "Type" "in" site.Params.mainSections | first 7 -}}
+    <div class="mb-5 d-flex justify-content-between main-loop-card">
+    <div class="pr-3">
+    <h2 class="mb-1 h4 font-weight-bold"><a class="text-dark" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    <p class="excerpt">{{ .Params.description }}</p>
+    <div><small class="d-block text-muted">In <span class="catlist">{{ range .Params.categories }}<a class="text-capitalize text-muted smoothscroll" href="{{ "/categories/" | relLangURL | absURL }}{{ . | urlize }}"/>{{ . }}</a>, {{ end }}</span><span class="text-muted">{{ .PublishDate.Format "Jan 02, 2006" | safeHTML }}</span></small></div>
+    </div>
+    <div class="col-md-3 pr-0 text-right">
+      <a href="{{ .RelPermalink }}"><img class="w-100" src="{{ .Params.image }}" alt="{{ .LinkTitle }}"/></a>
+    </div>
+    </div>
+    {{- end }}
+                <!-- <div class="mt-5">
+                    <ul class="pagination"> 
+                        <li class="page-item disabled"><span class="prev page-link">&laquo;</span></li>
+                        <li class="page-item disabled"><span class="webjeda page-link">1</span></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next &raquo;</a></li>
+                    </ul>
+                </div> -->

@@ -1,0 +1,11 @@
+{{- define "main" }}
+<h1>{{ .Title }}</h1>
+<div class="borq"></div>
+{{ .Content | safeHTML }}
+<ul>
+<!-- Ranges through content/posts/*.md -->
+{{- range .Pages }}
+<li style="padding-bottom:5px;"><a href="{{ .RelPermalink }}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a></li>
+{{- end }}
+</ul>
+{{- end }}

@@ -1,0 +1,24 @@
+<div class="container">
+<div class="container pt-4 pb-4">
+    {{ partial "ads-sidebar.html" . }}
+    <h5 class="font-weight-bold spanborder"><span>Related Article</span></h5>
+    <div class="row">
+    {{- $related := .Site.RegularPages.RelatedIndices . "categories" "date" | shuffle | first 8 }}
+    {{- with $related }}
+    {{- range . }}
+        <div class="col-lg-6">
+                <div class="mb-3 d-flex align-items-center">
+                    <a href="{{ .RelPermalink}}"><img height="80" src="{{ .Site.Params.hold }}" data-src="{{ .Params.image }}" onerror="this.onerror=null;this.src='{{ "/img/placeholder.svg" | absURL }}';"/></a>
+                    <div class="pl-3">
+                        <h2 class="mb-2 h6 font-weight-bold">
+                        <a class="text-dark" href="{{ .RelPermalink}}">{{ .LinkTitle }}</a>
+                        </h2>
+                        <small class="text-muted">{{ .PublishDate.Format "Jan 02" | safeHTML }} . {{ .ReadingTime }} min read</small>
+                    </div>
+                </div>
+        </div>
+    {{- end }}
+    {{- end }}
+</div>
+</div>
+</div>

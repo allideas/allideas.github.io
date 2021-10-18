@@ -1,0 +1,11 @@
+{{- define "main" }}
+<div class="posts-single">
+<h1>{{ .Title }}</h1>
+<span itemscope='itemscope' itemtype='https://data-vocabulary.org/Breadcrumb'><a href='{{ .Site.BaseURL }}' itemprop='url' title='Home'><span class='bread' itemprop='title'>Home</span></a></span> &raquo; {{ range .Params.categories }}<span class='bread' itemscope='itemscope' itemtype='https://data-vocabulary.org/Breadcrumb'><a itemprop='url' href='{{ "/categories/" | relLangURL | absURL }}{{ . | urlize }}/'><span class='bread' itemprop='title'>{{ . }}</span></a></span>{{ end }} &raquo; <span class='bread'>{{ .Title }}</span>
+<div class="borq"></div>
+{{- partial "ads-top.html" . }}
+<p>{{ .Params.description }}</p>
+{{- .Content -}}
+</div>
+{{- partial "post-navi.html" . }}
+{{- end }}

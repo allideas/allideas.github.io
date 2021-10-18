@@ -1,0 +1,23 @@
+    <!-- Navbar -->
+    <nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ .Site.BaseURL }}"><span style="text-transform: capitalize;font-weight: bold;">{{ .Site.Title }}</strong></a><button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="navbar-collapse collapse" id="navbarColor02" style="">
+            <ul class="navbar-nav mr-auto d-flex align-items-center">
+               <!--  Replace menu links here -->
+               <li class="nav-item"><a class="nav-link" href="{{ "/contact/" | absURL }}">Contact</a></li>
+               <li class="nav-item"><a class="nav-link" href="{{ "/dmca/" | absURL }}">Dmca</a></li>
+               <li class="nav-item"><a class="nav-link" href="{{ "/privacy-policy/" | absURL }}">Privacy Policy</a></li>
+               <li class="nav-item"><a class="nav-link" href="{{ "/about/" | absURL }}">About</a></li>
+               {{- $categories := .Site.Taxonomies.categories -}}
+               {{- if gt (len $categories) 0 -}}
+               {{- range $name, $taxonomy := $categories -}}
+               {{- with $.Site.GetPage (printf "/categories/%s" $name) -}}
+               <li class="nav-item"><a class="nav-link" style="text-transform: capitalize;" href="{{ .Permalink }}" title="{{ .Title }}">{{- .Title -}}</a></li>
+               {{- end -}}
+               {{- end -}}
+               {{- end -}}
+           </ul>
+        </div>
+    </div>
+    </nav>

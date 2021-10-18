@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{ partial "arsae.html" . }}
+    {{- partial "head.html" . | safeHTML }}
+    {{ partial "webmaster.html" . }}
+    {{- partial "json-ld.html" . }}
+    {{- partial "style.html" . }}
+</head>
+  <body>
+   <main id="main">
+    {{- partial "header.html" . }}
+    <div class="container">
+     <div class="row content">
+      <div class="col-md-9">
+       <div class="col-sm-12">
+     	{{- block "main" . }}{{- end }}
+       </div>
+      </div>
+     <div class="col-md-3">
+      {{- partial "ads-sidebar.html" . }}
+      {{- partial "aside.html" . }}
+     </div>
+     </div>
+   </div>
+  </main>
+    {{- partial "footer.html" . }}
+    {{- partial "ads-footer.html" . }}
+  </body>
+</html>
